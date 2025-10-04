@@ -1,0 +1,173 @@
+/* Basic Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header */
+.header {
+  background-color: #4a90e2;
+  color: white;
+  text-align: center;
+  padding: 100px 20px 50px;
+}
+
+.header h1 {
+  font-size: 4rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* Main content */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.post {
+  background: white;
+  padding: 20px;
+  margin-bottom: 30px;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.post h2 {
+  margin-bottom: 10px;
+  color: #4a90e2;
+}
+
+.post img {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  display: block;
+  margin: 15px auto 0; /* centers and adds space above */
+  border-radius: 8px;
+}
+
+}
+
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background: #333;
+  color: white;
+}
+.duck {
+  position: fixed;
+  width: 80px;
+  height: auto;
+
+
+  animation: wander 45s ease-in-out infinite;
+}
+
+
+
+/* Animation path for the duck - unpredictable zigzag wandering */
+@keyframes wander {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  0%   { left: 5%;   top: 10%; transform: rotate(-8deg); }
+  4%   { left: 13%;  top: 18%; transform: rotate(15deg); }
+  8%   { left: 9%;   top: 28%; transform: rotate(-12deg); }
+  12%  { left: 22%;  top: 22%; transform: rotate(18deg); }
+  16%  { left: 18%;  top: 35%; transform: rotate(-10deg); }
+  20%  { left: 29%;  top: 42%; transform: rotate(14deg); }
+  24%  { left: 35%;  top: 30%; transform: rotate(-16deg); }
+  28%  { left: 42%;  top: 48%; transform: rotate(11deg); }
+  32%  { left: 38%;  top: 16%; transform: rotate(-13deg); }
+  36%  { left: 50%;  top: 25%; transform: rotate(17deg); }
+  40%  { left: 46%;  top: 38%; transform: rotate(-9deg); }
+  44%  { left: 58%;  top: 44%; transform: rotate(19deg); }
+  48%  { left: 54%;  top: 55%; transform: rotate(-14deg); }
+  52%  { left: 65%;  top: 33%; transform: rotate(12deg); }
+  56%  { left: 71%;  top: 50%; transform: rotate(-18deg); }
+  60%  { left: 67%;  top: 62%; transform: rotate(10deg); }
+  64%  { left: 73%;  top: 41%; transform: rotate(-11deg); }
+  68%  { left: 62%;  top: 70%; transform: rotate(16deg); }
+  72%  { left: 55%;  top: 58%; transform: rotate(-15deg); }
+  76%  { left: 43%;  top: 68%; transform: rotate(13deg); }
+  80%  { left: 38%;  top: 55%; transform: rotate(-17deg); }
+  84%  { left: 28%;  top: 63%; transform: rotate(9deg); }
+  88%  { left: 20%;  top: 48%; transform: rotate(-12deg); }
+  92%  { left: 15%;  top: 58%; transform: rotate(14deg); }
+  96%  { left: 10%;  top: 38%; transform: rotate(-10deg); }
+  100% { left: 5%;   top: 10%; transform: rotate(-8deg); }
+}
+
+  0%   { left: 5%;   top: 10%; transform: rotate(-8deg); }
+  4%   { left: 13%;  top: 18%; transform: rotate(15deg); }
+  8%   { left: 9%;   top: 28%; transform: rotate(-12deg); }
+  12%  { left: 22%;  top: 22%; transform: rotate(18deg); }
+  16%  { left: 18%;  top: 35%; transform: rotate(-10deg); }
+  20%  { left: 29%;  top: 42%; transform: rotate(14deg); }
+  24%  { left: 35%;  top: 30%; transform: rotate(-16deg); }
+  28%  { left: 42%;  top: 48%; transform: rotate(11deg); }
+  32%  { left: 38%;  top: 16%; transform: rotate(-13deg); }
+  36%  { left: 50%;  top: 25%; transform: rotate(17deg); }
+  40%  { left: 46%;  top: 38%; transform: rotate(-9deg); }
+  44%  { left: 58%;  top: 44%; transform: rotate(19deg); }
+  48%  { left: 54%;  top: 55%; transform: rotate(-14deg); }
+  52%  { left: 65%;  top: 33%; transform: rotate(12deg); }
+  56%  { left: 71%;  top: 50%; transform: rotate(-18deg); }
+  60%  { left: 67%;  top: 62%; transform: rotate(10deg); }
+  64%  { left: 73%;  top: 41%; transform: rotate(-11deg); }
+  68%  { left: 62%;  top: 70%; transform: rotate(16deg); }
+  72%  { left: 55%;  top: 58%; transform: rotate(-15deg); }
+  76%  { left: 43%;  top: 68%; transform: rotate(13deg); }
+  80%  { left: 38%;  top: 55%; transform: rotate(-17deg); }
+  84%  { left: 28%;  top: 63%; transform: rotate(9deg); }
+  88%  { left: 20%;  top: 48%; transform: rotate(-12deg); }
+  92%  { left: 15%;  top: 58%; transform: rotate(14deg); }
+  96%  { left: 10%;  top: 38%; transform: rotate(-10deg); }
+  100% { left: 5%;   top: 10%; transform: rotate(-8deg); }

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Life</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <h1>My Life</h1>
+  </header>
+
+  <main class="main-content">
+    <!-- Example post -->
+    <section class="post">
+      <h2>Who am I</h2>
+      <p>Hi, I'm Max. Nice to meet you.</p>
+      <img src="myphoto.jpg" alt="My Photo">
+    </section>
+
+    <!-- Another post -->
+    <section class="post">
+      <h2>Another Day</h2>
+      <p>Here’s another story or text you want to share. Add photos below if you like.</p>
+      <img src="another-photo.jpg" alt="Another Photo">
+    </section>
+  </main>
+
+  <footer class="footer">
+    © <span id="year"></span> My Life
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <img src="duck.gif" alt="duck" class="duck">
+</body>
+</html>
