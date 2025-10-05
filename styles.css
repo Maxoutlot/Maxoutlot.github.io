@@ -1,3 +1,9 @@
+.post-date {
+  font-size: 0.95rem;
+  color: #888;
+  margin-bottom: 8px;
+  font-style: italic;
+}
 /* Basic Reset */
 * {
   box-sizing: border-box;
@@ -14,6 +20,17 @@ body {
   min-height: 100vh;
 }
 
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 /* Header */
 .header {
   background: url('Xian.jpg?v=2') center center/cover no-repeat;
@@ -27,6 +44,30 @@ body {
   font-size: 2.2rem;
   font-weight: bold;
   letter-spacing: 2px;
+  -webkit-text-stroke: 1px #000;
+  text-stroke: 1px #000;
 }
-  40%  { left: 49%;  top: 22%; transform: rotate(-13deg); }
-  44%  { left: 56%;  top: 34%; transform: rotate(19deg); }
+
+.post {
+  background: white;
+  padding: 24px;
+  margin-bottom: 32px;
+  width: 100%;
+  max-width: 700px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  transition: box-shadow 0.2s;
+}
+.post:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+.post h2 {
+  margin-bottom: 12px;
+  color: #333;
+  font-size: 1.5rem;
+}
+.post p {
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.7;
+}
