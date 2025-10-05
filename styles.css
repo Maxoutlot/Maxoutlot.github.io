@@ -23,11 +23,11 @@ body {
 .main-content {
   flex: 1;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  gap: 24px;
+  align-items: flex-start;
   justify-content: center;
   padding: 40px 20px;
-  max-width: 800px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
@@ -36,8 +36,27 @@ body {
   background: url('Xian.jpg?v=2') center center/cover no-repeat;
   color: white;
   text-align: center;
-  padding: 56px 20px 32px;
+  padding: 72px 20px 40px; /* more top padding so title sits centrally in the hero */
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Fix: prevent default purple/visited-link color inside header/logo */
+.header a,
+.header a:visited,
+.logo a,
+.logo h1 a {
+  color: inherit; /* keep white from .header */
+  text-decoration: none;
+}
+
+/* Optionally ensure hover/focus states remain visible */
+.header a:hover,
+.header a:focus {
+  color: #fff;
+  text-decoration: underline; /* or none, depending on preference */
 }
 
 .header h1 {
@@ -45,15 +64,13 @@ body {
   font-weight: bold;
   letter-spacing: 2px;
   -webkit-text-stroke: 1px #000;
-  text-stroke: 1px #000;
 }
 
 .post {
   background: white;
   padding: 24px;
   margin-bottom: 32px;
-  width: 100%;
-  max-width: 700px;
+  flex: 1 1 0;
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.08);
   transition: box-shadow 0.2s;
@@ -70,4 +87,120 @@ body {
   font-size: 1.1rem;
   color: #444;
   line-height: 1.7;
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  align-items: flex-end; /* push items down */
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 12px;
+  position: relative;
+  z-index: 1;
+  height: 56px; /* adjust to move links lower/raise as needed */
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 0;
+  /* additional vertical offset if you want them even lower */
+  margin-bottom: 10px; /* increase/decrease this value to fine-tune */
+}
+
+/* make sure the title stays vertically aligned */
+.logo h1 {
+  margin: 0;
+  font-size: 2.4rem; /* slightly larger for emphasis */
+  line-height: 1;
+  z-index: 2; /* above header background */
+}
+
+/* Sub navigation (under header) */
+.sub-nav {
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  margin-top: 12px; /* place it below the header */
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 3; /* ensure sub-nav sits above the header background image */
+}
+
+/* (sub-nav is visible by default) */
+
+.sub-nav-links {
+  list-style: none;
+  display: flex;
+  gap: 16px;
+  padding: 0;
+  margin: 0;
+}
+
+.sub-nav-links a {
+  color: #333;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.sub-nav-links a:hover,
+.sub-nav-links a:focus {
+  background: rgba(0,0,0,0.06);
+  color: #000;
+}
+
+/* Left side widget */
+.side-widget {
+  width: 220px;
+  min-width: 160px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  align-self: flex-start; /* let it sit at the top of main-content */
+}
+
+/* Nudge the widget further left on medium+ screens */
+@media (min-width: 900px) {
+  .side-widget {
+    margin-left: -60px; /* move it left by 60px */
+  }
+}
+
+@media (min-width: 1200px) {
+  .side-widget {
+    margin-left: -110px; /* move it further left on wide screens */
+  }
+}
+
+.side-widget .widget-title {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.side-widget .widget-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111;
+  text-align: center;
+}
+
+/* Hide the widget on narrow screens */
+@media (max-width: 760px) {
+  .side-widget {
+    display: none;
+  }
+  .main-content {
+    padding: 24px 12px;
+    max-width: 900px;
+    flex-direction: column;
+    align-items: center;
+  }
 }
