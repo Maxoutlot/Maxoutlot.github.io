@@ -25,10 +25,28 @@ body {
   display: flex;
   gap: 24px;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start; /* Changed from center to flex-start */
   padding: 40px 20px;
   max-width: 1100px;
   margin: 0 auto;
+  flex-wrap: wrap; /* Allow wrapping if needed */
+}
+
+/* Sidebar container for widgets */
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 220px;
+  flex-shrink: 0;
+}
+
+/* Posts container - stacks posts vertically */
+.posts-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
 }
 
 /* Header */
@@ -36,7 +54,7 @@ body {
   background: url('Xian.jpg?v=2') center center/cover no-repeat;
   color: white;
   text-align: center;
-  padding: 72px 20px 40px; /* more top padding so title sits centrally in the hero */
+  padding: 24px 20px 16px; /* Much more compact vertically */
   position: relative;
   display: flex;
   align-items: center;
@@ -70,10 +88,12 @@ body {
   background: white;
   padding: 24px;
   margin-bottom: 32px;
-  flex: 1 1 0;
+  width: 100%;
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.08);
   transition: box-shadow 0.2s;
+  position: relative;
+  padding-bottom: 50px; /* make room for city tag */
 }
 .post:hover {
   box-shadow: 0 8px 24px rgba(0,0,0,0.12);
@@ -87,6 +107,100 @@ body {
   font-size: 1.1rem;
   color: #444;
   line-height: 1.7;
+}
+
+/* Post image carousel styling */
+.post-image-carousel {
+  margin: 20px 0;
+}
+
+.carousel-container {
+  position: relative;
+  display: inline-block;
+  max-width: 250px;
+  width: 100%;
+}
+
+.carousel-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: opacity 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.carousel-image.active {
+  position: relative;
+  opacity: 1;
+}
+
+.carousel-image:not(.active) {
+  opacity: 0;
+}
+
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px; /* Reduced from 40px */
+  height: 32px; /* Reduced from 40px */
+  font-size: 1rem; /* Reduced from 1.2rem */
+  cursor: pointer;
+  transition: background-color 0.2s;
+  z-index: 10;
+}
+
+.carousel-nav:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-nav.next-btn {
+  right: -20px;
+}
+
+.carousel-nav.prev-btn {
+  left: -20px;
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 6px 10px;
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+}
+
+.indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  padding: 0;
+}
+
+.indicator.active {
+  background: white;
+  transform: scale(1.2);
+}
+
+.indicator:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: scale(1.1);
 }
 
 /* Navigation */
@@ -131,11 +245,6 @@ body {
   z-index: 3; /* ensure sub-nav sits above the header background image */
 }
 
-/* Temporarily hide Home/About navigation as requested */
-.sub-nav {
-  display: none !important;
-}
-
 .sub-nav-links {
   list-style: none;
   display: flex;
@@ -158,6 +267,16 @@ body {
   color: #000;
 }
 
+.happiness-link {
+  color: #FF6B6B !important; /* Reddish color for happiness theme */
+  font-weight: 500;
+}
+
+.happiness-link:hover {
+  background: rgba(255, 107, 107, 0.1);
+  color: #FF5252 !important;
+}
+
 /* Left side widget */
 .side-widget {
   width: 220px;
@@ -167,7 +286,124 @@ body {
   padding: 14px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.08);
   align-self: flex-start; /* let it sit at the top of main-content */
+  flex-shrink: 0; /* Prevent widgets from shrinking */
 }
+
+/* Calendar widget specifically */
+.calendar-widget {
+  background: linear-gradient(135deg, #FFE4E1 0%, #FFF8DC 100%);
+  border: 2px solid #DEB887;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 0 8px;
+}
+
+.calendar-nav {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: #8B4513;
+  transition: background-color 0.2s;
+}
+
+.calendar-nav:hover {
+  background: rgba(222, 184, 135, 0.3);
+}
+
+.calendar-month-year {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #8B4513;
+  text-align: center;
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin-bottom: 8px;
+}
+
+.calendar-day-header {
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #8B4513;
+  padding: 6px 2px;
+}
+
+.calendar-day {
+  text-align: center;
+  padding: 6px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar-day:hover {
+  background: rgba(222, 184, 135, 0.3);
+}
+
+.calendar-day.today {
+  background: #FF6347;
+  color: white;
+  font-weight: bold;
+}
+
+.calendar.food-day.other-month {
+  color: #CCC;
+}
+
+.calendar-footer {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #8B4513;
+  margin-top: 8px;
+  padding: 6px;
+  background: rgba(222, 184, 135, 0.1);
+  border-radius: 6px;
+}
+
+/* Happiness calendar specific styling */
+#happiness-calendar-widget .calendar-day.happiness-rated {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#happiness-calendar-widget .calendar-day.happiness-1-3 {
+  background: #E53E3E !important; /* Red for unhappy days */
+  color: white !important;
+}
+
+#happiness-calendar-widget .calendar-day.happiness-4-6 {
+  background: #D69E2E !important; /* Orange for neutral days */
+  color: white !important;
+}
+
+#happiness-calendar-widget .calendar-day.happiness-7-10 {
+  background: #38A169 !important; /* Green for happy days */
+  color: white !important;
+}
+
+#happiness-calendar-widget .calendar-day.today.happiness-rated {
+  border: 3px solid #FFD700; /* Gold border for today if rated */
+}
+
+/* Statistics widget styling */
 
 /* Nudge the widget further left on medium+ screens */
 @media (min-width: 900px) {
@@ -215,7 +451,8 @@ body {
   font-size: 1.8rem;
   margin-top: 12px;
   transform-origin: center bottom;
-  animation: penguin-waddle 1.6s ease-in-out infinite;
+  /* animation intentionally disabled per user request */
+  animation: none;
 }
 
 @keyframes penguin-waddle {
@@ -232,4 +469,248 @@ body {
   .moving-penguin {
     animation: none;
   }
+}
+
+/* Ancient-China decorative smile */
+/* ancient-icon removed */
+
+/* Daily posts modal */
+.daily-posts-modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  max-width: 700px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  z-index: 1000;
+  border: 3px solid #FF6347;
+}
+
+.daily-posts-modal.show {
+  display: block;
+}
+
+.daily-posts-header {
+  text-align: center;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #FFE4E1;
+}
+
+.daily-posts-title {
+  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.daily-posts-date {
+  color: #666;
+  font-size: 1rem;
+}
+
+.daily-posts-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.daily-posts-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+  padding: 5px;
+}
+
+.daily-posts-close:hover {
+  color: #000;
+}
+
+.daily-posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.daily-post-item {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  border-left: 4px solid #FF6347;
+}
+
+.daily-post-date {
+  color: #888;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  font-style: italic;
+}
+
+.daily-post-title {
+  color: #333;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.daily-post-content {
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.daily-post-city-tag {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.daily-post-city-tag:hover {
+  text-decoration: underline;
+}
+
+/* Food widget styling */
+.food-widget {
+  background: linear-gradient(135deg, #FFE4B5 0%, #F0E68C 100%);
+  border: 2px solid #DAA520;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Happiness calendar day styling */
+.calendar-day.happiness-rated {
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 12px;
+  padding: 8px;
+}
+
+.stats-icon {
+  font-size: 2rem;
+  margin-bottom: 6px;
+  filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.2));
+}
+
+.stats-title {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #2C5282;
+}
+
+.stats-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 8px;
+  background: rgba(74, 144, 226, 0.05);
+  border-radius: 6px;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #4A5568;
+  flex: 1;
+}
+
+.stat-value {
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-align: right;
+  min-width: 25px;
+}
+
+.happy-count {
+  color: #38A169;
+}
+
+.neutral-count {
+  color: #D69E2E;
+}
+
+.unhappy-count {
+  color: #E53E3E;
+}
+
+.total-count {
+  color: #2D3748;
+  font-size: 1.2rem;
+}
+
+.average-score {
+  color: #805AD5;
+  font-size: 1.2rem;
+}
+
+/* Instructions styling */
+.instructions {
+  background: #F7FAFC;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+  border-left: 4px solid #4A90E2;
+}
+
+.instructions h3 {
+  color: #2D3748;
+  margin-bottom: 10px;
+}
+
+.instructions ol {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.instructions li {
+  margin: 5px 0;
+  color: #4A5568;
+}
+
+.instructions ul {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.instructions li {
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.color-sample {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.color-sample.red {
+  background: #E53E3E;
+}
+
+.color-sample.orange {
+  background: #D69E2E;
+}
+
+.color-sample.green {
+  background: #38A169;
 }

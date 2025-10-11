@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Posts from <span id="city-title"></span></title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <a class="logo" href="index.html"><h1>Blogging from Xi'an</h1></a>
+    </nav>
+  </header>
+
+  <!-- Navigation placed under the header -->
+  <nav class="sub-nav">
+    <ul class="sub-nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="happiness.html" class="happiness-link">Was I happy today?</a></li>
+    </ul>
+  </nav>
+
+  <main class="main-content">
+    <aside class="side-widget" id="days-widget" aria-label="Days spent in Xi'an">
+      <div class="widget-inner">
+        <div class="widget-title">Days spent in Xi'an</div>
+        <div class="widget-value" id="days-count">—</div>
+      </div>
+    </aside>
+
+    <div class="posts-container">
+      <h2 id="city-header" style="margin-bottom: 24px; color: #333;">Posts from <span id="city-name"></span></h2>
+      
+      <a href="index.html" style="display: inline-block; margin-bottom: 20px; color: #4a90e2; text-decoration: none;">&larr; Back to all posts</a>
+      
+      <!-- Posts will be dynamically loaded here -->
+      <div id="posts-list"></div>
+      
+      <p id="no-posts" style="display: none; color: #888; font-style: italic;">No posts found for this city.</p>
+    </div>
+  </main>
+
+  <script src="scripts.js" defer></script>
+  <script>
+    // Get the city from URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const city = urlParams.get('city');
+    
+    // Update page title and header
+    if (city) {
+      document.title = `Posts from ${city}`;
+      
+      // All posts data (in a real app, this would come from a database)
+      const allPosts = [
+        {
+          city: 'Xian',
+          date: '5 - October - 2025',
+          title: 'A day before the departure',
+          content: "Tomorrow I'll fly to Xi'an. That's a new city and a new chapter in my life. I'll be blogging here about my expirience."
+        },
+        {
+          city: 'Lanzhou',
+          date: '4 - October - 2025',
+          title: 'Exploring Lanzhou',
+          content: 'Just arrived in Lanzhou! The Yellow River is stunning and the famous beef noodles are incredible. This city has such a different vibe from Xi\'an.'
+        },
+        {
+          city: 'Chengdu',
+          date: '3 - October - 2025',
+          title: 'Chengdu Adventures',
+          content: 'Chengdu is amazing! Visited the Giant Panda Research Base today and saw the most adorable pandas. The spicy hotpot here is on another level. Can\'t wait to explore more of this vibrant city.'
+        },
+        {
+          city: 'Hangzhou',
+          date: '1 - October - 2025',
+          title: 'Hangzhou Discovery',
+          content: 'Hangzhou is breathtaking! The West Lake is absolutely stunning and the tea culture here is fascinating. The silk markets are incredible and the local cuisine is delicious.'
+        },
+        {
+          city: 'Hangzhou',
+          date: '28 - September - 2025',
+          title: 'Early Hangzhou Impressions',
+          content: 'Just arrived in Hangzhou a week ago and I\'m already in love! The ancient temples and gardens are incredible. The local people are so welcoming and the street food scene is amazing.'
+        }
+      ];
+      // Filter posts by city
+      const cityPosts = allPosts.filter(post => post.city === city);
+      
+      // Display posts
+      const postsList = document.getElementById('posts-list');
+      
+      if (cityPosts.length > 0) {
+        cityPosts.forEach(post => {
+          const postElement = document.createElement('section');
+          postElement.className = 'post';
+          postElement.setAttribute('data-city', post.city);
+          postElement.innerHTML = `
+            <div class="post-date">${post.date}</div>
+            <h2>${post.title}</h2>
+            <p>${post.content}</p>
+            ${post.city === 'Xian' ? `
+              <div class="post-image-carousel">
+                <div class="carousel-container">
+                  <img src="duck.png" alt="A duck in Xi'an" class="carousel-image active" data-index="0" />
+                  <img src="Xian.jpg" alt="Xi'an cityscape" class="carousel-image" data-index="1" />
+                  <button class="carousel-nav prev-btn" onclick="prevImage(this)">‹</button>
+                  <button class="carousel-nav next-btn" onclick="nextImage(this)">›</button>
+                  <div class="carousel-indicators">
+                    <span class="indicator active" data-index="0"></span>
+                    <span class="indicator" data-index="1"></span>
+                  </div>
+                </div>
+              </div>
+            ` : ''}
+            <a class="city-tag" href="city.html?city=${post.city}" aria-label="See all posts from ${post.city}">#${post.city}</a>
+          `;
+          postsList.appendChild(postElement);
+        });
+      } else {
+        noPosts.style.display = 'block';
+      }
+    } else {
+      document.getElementById('city-name').textContent = 'Unknown';
+      document.getElementById('no-posts').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
